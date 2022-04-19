@@ -44,7 +44,7 @@ public class End extends AppCompatActivity {
                 matrix.setSaturation(0);  //0 means grayscale
                 ColorMatrixColorFilter cf = new ColorMatrixColorFilter(matrix);
                 imageView.setColorFilter(cf);
-                imageView.setImageAlpha(128);}
+                }
     }
 
     @Override
