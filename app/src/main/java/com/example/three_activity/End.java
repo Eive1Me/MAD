@@ -9,9 +9,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class End extends AppCompatActivity {
+
+    ArrayList<User> users = new ArrayList<User>();
+    ListView usersList;
 
     public void goMain(View view) {
         Intent intent = new Intent(this, MainActivity.class);
@@ -29,6 +35,9 @@ public class End extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_win);
+
+        setInitialData();
+
         Bundle arguments = getIntent().getExtras();
         String result = arguments.get("outcome").toString();
 
@@ -45,6 +54,18 @@ public class End extends AppCompatActivity {
                 ColorMatrixColorFilter cf = new ColorMatrixColorFilter(matrix);
                 imageView.setColorFilter(cf);
                 }
+
+        usersList = findViewById(R.id.usersList);
+        UserAdapter userAdapter = new UserAdapter(this,R.layout.list_item,users);
+        usersList.setAdapter(userAdapter);
+    }
+
+    private void setInitialData(){
+        users.add(new User ("Данил", R.drawable.mal));
+        users.add(new User ("Илья", R.drawable.mal));
+        users.add(new User ("Алёна", R.drawable.fem));
+        users.add(new User ("Денис", R.drawable.mal));
+        users.add(new User ("Настя", R.drawable.fem));
     }
 
     @Override
