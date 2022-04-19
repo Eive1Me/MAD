@@ -11,6 +11,7 @@
 
     <Button
         android:id="@+id/button3"
+        style="@style/Widget.MaterialComponents.Button"
         android:layout_width="201dp"
         android:layout_height="92dp"
         android:onClick="goGame"
