@@ -13,6 +13,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void goProf(View view){
+        Intent intent = new Intent(this, Prof.class);
+        startActivity(intent);
+    }
+
     private final static String TAG = "MainActivity";
 
     @Override

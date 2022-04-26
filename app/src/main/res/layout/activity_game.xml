@@ -12,7 +12,7 @@
     <Button
         android:id="@+id/button"
         android:layout_width="201dp"
-        android:layout_height="92dp"
+        android:layout_height="70dp"
         android:onClick="goWin"
         android:text="Выиграть"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -23,7 +23,7 @@
     <Button
         android:id="@+id/button2"
         android:layout_width="201dp"
-        android:layout_height="92dp"
+        android:layout_height="70dp"
         android:onClick="goMain"
         android:text="Выйти"
         app:layout_constraintBottom_toBottomOf="parent"

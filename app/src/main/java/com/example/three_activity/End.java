@@ -4,13 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -58,6 +59,14 @@ public class End extends AppCompatActivity {
         usersList = findViewById(R.id.usersList);
         UserAdapter userAdapter = new UserAdapter(this,R.layout.list_item,users);
         usersList.setAdapter(userAdapter);
+        AdapterView.OnItemClickListener itemListener = (parent, v, position, id) -> {
+
+            // получаем выбранный пункт
+            User selectedUser = (User) parent.getItemAtPosition(position);
+            Toast.makeText(getApplicationContext(), "Имя данного пользователя " + selectedUser.getName(),
+                    Toast.LENGTH_SHORT).show();
+        };
+        usersList.setOnItemClickListener(itemListener);
     }
 
     private void setInitialData(){

@@ -23,16 +23,28 @@ public class UserAdapter extends ArrayAdapter<User> {
     }
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        View view=inflater.inflate(this.layout, parent, false);
-
-        ImageView flagView = view.findViewById(R.id.pic);
-        TextView nameView = view.findViewById(R.id.name);
-
+        ViewHolder viewHolder;
+        if(convertView==null){
+            convertView = inflater.inflate(this.layout, parent, false);
+            viewHolder = new ViewHolder(convertView);
+            convertView.setTag(viewHolder);
+        }
+        else{
+            viewHolder = (ViewHolder) convertView.getTag();
+        }
         User user = users.get(position);
 
-        flagView.setImageResource(user.getPicResource());
-        nameView.setText(user.getName());
+        viewHolder.imageView.setImageResource(user.getPicResource());
+        viewHolder.nameView.setText(user.getName());
 
-        return view;
+        return convertView;
+    }
+    private class ViewHolder {
+        final ImageView imageView;
+        final TextView nameView;
+        ViewHolder(View view){
+            imageView = view.findViewById(R.id.pic);
+            nameView = view.findViewById(R.id.name);
+        }
     }
 }
