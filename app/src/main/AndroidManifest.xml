@@ -18,11 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Three_activity.FullScreen">
         <activity
-            android:name="com.example.three_activity.DatabaseHelper"
-            android:exported="false" />
-        <activity
             android:name="com.example.three_activity.Player"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.example.three_activity.End"
             android:exported="false"

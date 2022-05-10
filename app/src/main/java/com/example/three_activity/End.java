@@ -47,8 +47,6 @@ public class End extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_win);
 
-        setInitialData();
-
         Bundle arguments = getIntent().getExtras();
         String result = arguments.get("outcome").toString();
 
@@ -81,23 +79,6 @@ public class End extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
         };
         usersList.setOnItemClickListener(itemListener);
-    }
-
-    private void setInitialData(){
-//        db = getBaseContext().openOrCreateDatabase("app.db", MODE_PRIVATE, null);
-//        db.execSQL("CREATE TABLE IF NOT EXISTS users (id TEXT,name TEXT, city TEXT, gender INTEGER, score INTEGER, UNIQUE(name))");
-//        db.execSQL("INSERT OR IGNORE INTO users VALUES ('Том','',1,2), ('Джон', '',1,3), ('Донна','',0,4),('Марта','',0,4);");
-//
-//        query = db.rawQuery("SELECT * FROM users;",null);
-//        while(query.moveToNext()){
-//            String name = query.getString(0);
-//            String city = query.getString(1);
-//            int gender = query.getInt(2);
-//            int score = query.getInt(3);
-//            int pic = R.drawable.mal;
-//            if (gender==0) pic = R.drawable.fem;
-//            users.add(new User(name,pic,city,score));
-//        }
     }
 
     @Override
