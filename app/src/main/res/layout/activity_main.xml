@@ -32,6 +32,18 @@
         app:layout_constraintTop_toBottomOf="@+id/button"
         app:layout_constraintVertical_bias="0.25" />
 
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="201dp"
+        android:layout_height="70dp"
+        android:onClick="goIvi"
+        android:text="Ева, хватит мучить это приложение"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button5"
+        app:layout_constraintVertical_bias="0.5" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"

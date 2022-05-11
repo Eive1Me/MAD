@@ -18,6 +18,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void goIvi(View view) {
+        Intent intent = new Intent(this, Ivi.class);
+        startActivity(intent);
+    }
+
     private final static String TAG = "MainActivity";
 
     @Override
