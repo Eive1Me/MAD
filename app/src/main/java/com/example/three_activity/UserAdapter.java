@@ -11,16 +11,19 @@ import android.widget.TextView;
 import java.util.List;
 
 public class UserAdapter extends ArrayAdapter<User> {
+    //Отрисовывает xml файл в объект View
     private LayoutInflater inflater;
     private int layout;
     private List<User> users;
 
     public UserAdapter(Context context, int resource, List<User> users) {
+        //Вызов к ArrayAdapter
         super(context, resource, users);
         this.users = users;
         this.layout = resource;
         this.inflater = LayoutInflater.from(context);
     }
+
     public View getView(int position, View convertView, ViewGroup parent) {
 
         ViewHolder viewHolder;
@@ -39,6 +42,7 @@ public class UserAdapter extends ArrayAdapter<User> {
 
         return convertView;
     }
+
     private class ViewHolder {
         final ImageView imageView;
         final TextView nameView;

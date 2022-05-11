@@ -1,5 +1,6 @@
 package com.example.three_activity;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -10,6 +11,7 @@ import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.util.Log;
@@ -19,8 +21,10 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -81,7 +85,6 @@ public class Prof extends AppCompatActivity {
     }
 
     public void open_pic(){
-        System.out.println("AHAHAHAHAHAHHAHAH");
         FileInputStream fin = null;
         try {
             ImageView iv = findViewById(R.id.imageView2);
@@ -90,7 +93,7 @@ public class Prof extends AppCompatActivity {
             iv.setImageDrawable(drawable);
         }
         catch(IOException ex) {
-            Toast.makeText(this, "Пожалуйста, установите имя.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Пожалуйста, установите картинку.", Toast.LENGTH_SHORT).show();
         }
         finally{
             try{
@@ -98,8 +101,24 @@ public class Prof extends AppCompatActivity {
                     fin.close();
             }
             catch(IOException ex){
-                Toast.makeText(this, "Пожалуйста, установите имя.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Пожалуйста, установите картинку.", Toast.LENGTH_SHORT).show();
             }
+        }
+    }
+
+    public void save_pictoGal() {
+        //get image from image view
+        ImageView iv = findViewById(R.id.imageView2);
+        BitmapDrawable draw = (BitmapDrawable) iv.getDrawable();
+        Bitmap bitmap = draw.getBitmap();
+
+        String filename = String.format("%d.png",System.currentTimeMillis());
+        try {
+            //save to gallery
+            MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, filename, "Image");
+            Toast.makeText(this, "Файл сохранен", Toast.LENGTH_SHORT).show();
+        } catch (Exception ex) {
+            Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -129,7 +148,7 @@ public class Prof extends AppCompatActivity {
 
     public void download_pic(View view){
         System.out.println("HAHAHAHH");
-        save_pic();
+        save_pictoGal();
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -152,6 +171,8 @@ public class Prof extends AppCompatActivity {
         setContentView(R.layout.activity_prof);
         open_text();
         open_pic();
+        ActivityCompat.requestPermissions(Prof.this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
+        ActivityCompat.requestPermissions(Prof.this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},1);
         findViewById(R.id.upload_pic).setOnClickListener(view -> {
             // in onCreate or any event where your want the user to
             // select a file

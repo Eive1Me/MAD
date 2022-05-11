@@ -44,9 +44,12 @@ public class End extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //вызов стандартного метода для дополнения его своими функциями
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_win);
 
+        //-----------------"игра"------------------
+        //Получаем данные из предыдущей активити
         Bundle arguments = getIntent().getExtras();
         String result = arguments.get("outcome").toString();
 
@@ -59,22 +62,28 @@ public class End extends AppCompatActivity {
         else
             { imageView.setImageResource(R.drawable.nothehe);
                 ColorMatrix matrix = new ColorMatrix();
-                matrix.setSaturation(0);  //0 means grayscale
+                matrix.setSaturation(0);  //0 черно-белый для проигрыша
                 ColorMatrixColorFilter cf = new ColorMatrixColorFilter(matrix);
                 imageView.setColorFilter(cf);
                 }
+        //-----------------------------------------
 
+        //Адаптер списка для отображения пользователей
         usersList = findViewById(R.id.usersList);
         userAdapter = new UserAdapter(this,R.layout.list_item,users);
         usersList.setAdapter(userAdapter);
+
+        //По клику на элемент списка
         AdapterView.OnItemClickListener itemListener = (parent, v, position, id) -> {
             // получаем выбранный пункт
             User selectedUser = (User) parent.getItemAtPosition(position);
             if(selectedUser!=null) {
+                //Открываем для редактирования данных в бд
                 Intent intent = new Intent(getApplicationContext(), Player.class);
                 intent.putExtra("id", selectedUser.getId());
                 startActivity(intent);
             }
+            //Всплывающее окно Тоаст (текущий контекст/объект активити, текст и время отображения)
             Toast.makeText(getApplicationContext(), "Имя данного пользователя " + selectedUser.getName(),
                     Toast.LENGTH_SHORT).show();
         };
@@ -83,14 +92,16 @@ public class End extends AppCompatActivity {
 
     @Override
     protected void onResume(){
+        //вызов стандартного метода для дополнения его своими функциями
         super.onResume();
+        //При козобновлении обновляем список пользователей загруженный из бд
         DatabaseAdapter adapter = new DatabaseAdapter(this);
         adapter.open();
 
         List<User> users = adapter.getUsers();
-
         userAdapter = new UserAdapter(this,R.layout.list_item,users);
         usersList.setAdapter(userAdapter);
+
         adapter.close();
         Log.d(TAG, "onResume");
     }

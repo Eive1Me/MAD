@@ -36,6 +36,7 @@ public class DatabaseAdapter {
         ArrayList<User> users = new ArrayList<>();
         Cursor cursor = getAllEntries();
         while (cursor.moveToNext()){
+            //SupressLint для игнорирования ошибок
             @SuppressLint("Range") int id = cursor.getInt(cursor.getColumnIndex(DatabaseHelper.COLUMN_ID));
             @SuppressLint("Range") String name = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_NAME));
             @SuppressLint("Range") String city = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_CITY));
