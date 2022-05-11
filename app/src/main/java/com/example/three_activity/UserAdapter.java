@@ -26,6 +26,9 @@ public class UserAdapter extends ArrayAdapter<User> {
 
     public View getView(int position, View convertView, ViewGroup parent) {
 
+        //Параметр convertView указывает на элемент View, который используется для объекта в списке по позиции position.
+        // Если ранее уже создавался View для этого объекта, то параметр convertView уже содержит некоторое значение,
+        // которое мы можем использовать.
         ViewHolder viewHolder;
         if(convertView==null){
             convertView = inflater.inflate(this.layout, parent, false);
@@ -35,8 +38,10 @@ public class UserAdapter extends ArrayAdapter<User> {
         else{
             viewHolder = (ViewHolder) convertView.getTag();
         }
+        //Полученный объект
         User user = users.get(position);
 
+        //Значения из полученного объекта
         viewHolder.imageView.setImageResource(user.getPicResource());
         viewHolder.nameView.setText(user.getName());
 
@@ -44,6 +49,7 @@ public class UserAdapter extends ArrayAdapter<User> {
     }
 
     private class ViewHolder {
+        //Чтобы не искать каждый раз по id, в случаях когда контент вью уже определён
         final ImageView imageView;
         final TextView nameView;
         ViewHolder(View view){

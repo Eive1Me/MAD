@@ -16,7 +16,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/swiperefresh"
         app:layout_constraintEnd_toStartOf="@+id/refresh"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/clear"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
@@ -28,6 +28,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
+    <ImageButton
+        android:id="@+id/clear"
+        style="@android:style/Widget.Material.Light.ImageButton"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/swiperefresh"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@android:drawable/ic_lock_power_off" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swiperefresh"

@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebSettings;
+import android.webkit.WebStorage;
 import android.webkit.WebView;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -15,7 +16,7 @@ import android.widget.ImageButton;
 public class WebViewAct extends Fragment {
     WebView webView;
     SwipeRefreshLayout refreshLayout;
-    ImageButton refresh;
+    ImageButton refresh,clear;
     ImageButton back,next;
     ImageButton zoomIn,zoomOut;
     EditText urlT;
@@ -41,6 +42,7 @@ public class WebViewAct extends Fragment {
         next = (ImageButton) view.findViewById(R.id.next);
         zoomIn = (ImageButton) view.findViewById(R.id.plus);
         zoomOut = (ImageButton) view.findViewById(R.id.minus);
+        clear = (ImageButton) view.findViewById(R.id.clear);
 
         new LoaderWeb(webView,urlT,refresh,back,next).start();
 
@@ -89,7 +91,18 @@ public class WebViewAct extends Fragment {
                 webView.stopLoading();
             }
         });
+        clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clearCache();
+            }
+        });
         return view;
+    }
+
+    //TODO clear cache
+    public void clearCache(){
+        webView.clearCache(true);
     }
 
     public void back() {
